@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { goToLanding } from '../../ScreenConfiguration';
+import { goToLanding } from '../../AppScreenConfig';
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import makeSelectSplashScreen from './selectors';
