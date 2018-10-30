@@ -4,7 +4,9 @@
 
 
 # RnWithNav
-* to initialise ur project, global search for RNWithNav and replace with your project name.
+1. to initialise ur project, global search for RNWithNav and replace with your project name.
+2. `react-native init <project_name>` to initialise a reactNative project
+3. copy `android` and `ios` folder from inside folder and put in root folder generated (folder name match with your project name)
 
 # STARTING APP
 1. open terminal (commad + J)
