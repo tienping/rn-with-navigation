@@ -1,0 +1,223 @@
+{
+    "name": "RnWithNav",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node node_modules/react-native/local-cli/cli.js start",
+        "test": "jest",
+        "generate": "plop --plopfile internals/generators/index.js",
+        "ios": "react-native run-ios",
+        "android": "react-native run-android"
+    },
+    "dependencies": {
+        "apisauce": "^0.14.3",
+        "base-64": "^0.1.0",
+        "html-entities": "^1.2.1",
+        "immutable": "^3.8.2",
+        "native-base": "^2.3.5",
+        "numeral": "^2.0.6",
+        "plop": "^2.1.0",
+        "prop-types": "^15.6.0",
+        "react": "16.4.1",
+        "react-native": "0.56.0",
+        "react-native-navigation": "^1.1.484",
+        "react-native-vector-icons": "^4.4.3",
+        "react-redux": "^5.0.6",
+        "redux": "^3.7.2",
+        "redux-devtools-extension": "^2.13.5",
+        "redux-immutable": "^4.0.0",
+        "redux-saga": "^0.16.0",
+        "reselect": "^3.0.1",
+        "uws": "^10.148.0"
+    },
+    "devDependencies": {
+        "babel": "^6.23.0",
+        "babel-cli": "^6.26.0",
+        "babel-eslint": "^8.0.3",
+        "babel-jest": "^22.0.4",
+        "babel-plugin-module-resolver": "^3.0.0",
+        "babel-preset-react-native": "^5.0.0",
+        "coveralls": "^3.0.0",
+        "enzyme": "^3.2.0",
+        "enzyme-adapter-react-16": "^1.1.1",
+        "eslint": "^4.13.1",
+        "eslint-config-airbnb": "^16.1.0",
+        "eslint-config-airbnb-base": "^12.1.0",
+        "eslint-import-resolver-babel-module": "^4.0.0",
+        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-jsx-a11y": "^6.0.3",
+        "eslint-plugin-react": "^7.5.1",
+        "eslint-plugin-redux-saga": "^0.6.0",
+        "hoist-non-react-statics": "^2.3.1",
+        "invariant": "^2.2.2",
+        "jest": "22.0.3",
+        "jest-cli": "^22.0.4",
+        "lint-staged": "^6.0.0",
+        "lodash": "^4.17.4",
+        "plop": "^1.9.1",
+        "pre-commit": "^1.2.2",
+        "react-dom": "^16.2.0",
+        "react-router-dom": "^4.2.2",
+        "react-test-renderer": "16.0.0",
+        "redux-devtools-extension": "^2.13.5",
+        "remote-redux-devtools": "^0.5.12",
+        "remotedev-rn-debugger": "^0.8.3"
+    },
+    "jest": {
+        "preset": "react-native",
+        "collectCoverageFrom": [
+            "app/**/*.{js,jsx}",
+            "!app/**/*.test.{js,jsx}",
+            "!app/*/RbGenerated*/*.{js,jsx}",
+            "App.js"
+        ],
+        "coverageThreshold": {
+            "global": {
+                "statements": 4,
+                "branches": 4,
+                "functions": 4,
+                "lines": 4
+            }
+        },
+        "moduleDirectories": [
+            "node_modules",
+            "app"
+        ],
+        "testRegex": "tests/.*\\.test\\.js$",
+        "transformIgnorePatterns": [
+            "node_modules/(?!react-native)/"
+        ]
+    },
+    "lint-staged": {
+        "*.js": "lint:eslint"
+    },
+    "eslintConfig": {
+        "parser": "babel-eslint",
+        "extends": [
+            "airbnb"
+        ],
+        "env": {
+            "node": true,
+            "jest": true,
+            "es6": true
+        },
+        "plugins": [
+            "redux-saga",
+            "react",
+            "jsx-a11y"
+        ],
+        "parserOptions": {
+            "ecmaVersion": 6,
+            "sourceType": "module",
+            "ecmaFeatures": {
+                "jsx": true,
+                "module": true
+            }
+        },
+        "settings": {
+            "import/resolver": {
+                "babel-module": {}
+            }
+        },
+        "rules": {
+            "react/no-array-index-key": [
+                "off"
+            ],
+            "object-curly-newline": [
+                "off",
+                {
+                    "multiline": true,
+                    "minProperties": 4
+                }
+            ],
+            "arrow-parens": [
+                "error",
+                "always"
+            ],
+            "arrow-body-style": [
+                2,
+                "as-needed"
+            ],
+            "class-methods-use-this": 0,
+            "comma-dangle": [
+                2,
+                "always-multiline"
+            ],
+            "import/imports-first": 0,
+            "import/newline-after-import": 0,
+            "import/no-dynamic-require": 0,
+            "import/no-extraneous-dependencies": 0,
+            "import/no-named-as-default": 0,
+            "import/no-unresolved": 2,
+            "import/no-webpack-loader-syntax": 0,
+            "import/prefer-default-export": 0,
+            "import/extensions": 0,
+            "indent": [
+                2,
+                4,
+                {
+                    "SwitchCase": 1
+                }
+            ],
+            "jsx-a11y/aria-props": 2,
+            "jsx-a11y/heading-has-content": 0,
+            "jsx-a11y/label-has-for": 2,
+            "jsx-a11y/mouse-events-have-key-events": 2,
+            "jsx-a11y/role-has-required-aria-props": 2,
+            "jsx-a11y/role-supports-aria-props": 2,
+            "max-len": 0,
+            "newline-per-chained-call": 0,
+            "no-confusing-arrow": 0,
+            "no-console": 1,
+            "no-use-before-define": 0,
+            "no-underscore-dangle": [
+                "off"
+            ],
+            "prefer-template": 2,
+            "react/forbid-prop-types": 0,
+            "react/prop-types": [
+                "off",
+                {
+                    "ignore": []
+                }
+            ],
+            "react/jsx-first-prop-new-line": [
+                2,
+                "multiline"
+            ],
+            "react/jsx-indent": [
+                1,
+                4
+            ],
+            "react/jsx-indent-props": [
+                1,
+                4
+            ],
+            "react/jsx-filename-extension": 0,
+            "react/jsx-no-target-blank": 0,
+            "react/require-default-props": 0,
+            "react/require-extension": 0,
+            "react/self-closing-comp": 0,
+            "react/jsx-boolean-value": [
+                "error",
+                "always"
+            ],
+            "redux-saga/no-yield-in-race": 2,
+            "redux-saga/yield-effects": 2,
+            "require-yield": 0,
+            "quote-props": 0,
+            "no-useless-escape": 0,
+            "global-require": 0,
+            "camelcase": 0,
+            "no-plusplus": 0
+        },
+        "globals": {
+            "ENVIRONMENT": false,
+            "__DEV__": false,
+            "FormData": false,
+            "fetch": false,
+            "reject": false,
+            "require": false
+        }
+    }
+}

@@ -1,0 +1,59 @@
+/*
+ *
+ * {{properCase name }}
+ *
+ */
+
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Container, Header, Content, Text } from 'native-base';
+import { connect } from 'react-redux';
+{{#if wantMessages}}
+{{/if}}
+{{#if wantActionsAndReducer}}
+import { createStructuredSelector } from 'reselect';
+import makeSelectData from './selectors';
+{{/if}}
+{{#if wantMessages}}
+import messages from './messages';
+{{/if}}
+
+export class {{ properCase name }} extends React.{{{ component }}} { // eslint-disable-line react/prefer-stateless-function
+    render() {
+        return (
+            <div>
+                {{#if wantHeaders}}
+                <Helmet>
+                    <title>{{properCase name}}</title>
+                    <meta name="description" content="Description of {{properCase name}}" />
+                </Helmet>
+                {{/if}}
+                {{#if wantMessages}}
+                <Text>{ messages.t('messageKey') }</Text>
+                {{/if}}
+            </div>
+        );
+    }
+}
+
+{{ properCase name }}.propTypes = {
+    dispatch: PropTypes.func.isRequired,
+};
+
+{{#if wantActionsAndReducer}}
+const mapStateToProps = createStructuredSelector({
+    data: makeSelectData(),
+});
+{{/if}}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        dispatch,
+    };
+}
+
+{{#if wantActionsAndReducer}}
+export default connect(mapStateToProps, mapDispatchToProps)({{ properCase name }});
+{{else}}
+export default connect(null, mapDispatchToProps)({{ properCase name }});
+{{/if}}

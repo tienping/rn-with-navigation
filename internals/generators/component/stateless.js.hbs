@@ -1,0 +1,32 @@
+/**
+*
+* {{ properCase name }}
+*
+*/
+
+import React from 'react';
+import { Container, Content, Text } from 'native-base';
+import PropTypes from 'prop-types';
+// import styled from 'styled-components';
+
+{{#if wantMessages}}
+import messages from './messages';
+{{/if}}
+
+function {{ properCase name }}() {
+    return (
+        <Container>
+            <Content>
+                {{#if wantMessages}}
+                <Text>{ messages.t('messageKey') }</Text>
+                {{/if}}
+            </Content>
+        </Container>
+    );
+}
+
+{{ properCase name }}.propTypes = {
+
+};
+
+export default {{ properCase name }};

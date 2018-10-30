@@ -1,0 +1,16 @@
+{
+  "presets": ["react-native"],
+  "plugins": [
+    [
+        "module-resolver", {
+            "alias": {
+                "base": "./app",
+                "containers": "./app/containers",
+                "components": "./app/components",
+                "style": "./app/style",
+                "utils": "./app/utils"
+            }
+        }
+    ]
+  ]
+}

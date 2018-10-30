@@ -1,0 +1,36 @@
+/**
+*
+* {{ properCase name }}
+*
+*/
+
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Container, Content, Text } from 'native-base';
+import styled from 'styled-components';
+
+{{#if wantMessages}}
+import messages from './messages';
+{{/if}}
+
+const MyCustomContainer = styled(Container)`
+    background: red;
+`
+
+class {{ properCase name }} extends {{{ type }}} { // eslint-disable-line react/prefer-stateless-function
+    render() {
+        return (
+            <MyCustomContainer>
+                <Content>
+                    <Text>Hello</Text>
+                </Content>
+            </MyCustomContainer>
+        );
+    }
+}
+
+{{ properCase name }}.propTypes = {
+
+};
+
+export default {{ properCase name }};
