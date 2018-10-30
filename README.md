@@ -1,4 +1,10 @@
+# Author
+* Kelvin TKW
+* TienPing
+
+
 # RnWithNav
+* to initialise ur project, global search for RNWithNav and replace with your project name.
 
 # STARTING APP
 1. open terminal (commad + J)
