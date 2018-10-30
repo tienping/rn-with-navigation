@@ -6,25 +6,14 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Content, Text } from 'native-base';
-import styled from 'styled-components';
-
-{{#if wantMessages}}
-import messages from './messages';
-{{/if}}
-
-const MyCustomContainer = styled(Container)`
-    background: red;
-`
+import { View, Text } from 'react-native';
 
 class {{ properCase name }} extends {{{ type }}} { // eslint-disable-line react/prefer-stateless-function
     render() {
         return (
-            <MyCustomContainer>
-                <Content>
-                    <Text>Hello</Text>
-                </Content>
-            </MyCustomContainer>
+            <View>
+                <Text>Hello</Text>
+            </View>
         );
     }
 }

@@ -13,16 +13,21 @@ module.exports = {
         default: 'Stateless Function',
         choices: () => ['Stateless Function', 'React.PureComponent', 'React.Component'],
     }, {
+        type: 'list',
+        name: 'reusable',
+        message: 'Is this a reusable container?',
+        default: 'Project Specific',
+        choices: () => ['Project Specific', 'Reusable Util Container'],
+    }, {
         type: 'input',
         name: 'name',
         message: 'What should it be called?',
-        default: 'Form',
         validate: (value) => {
             if ((/.+/).test(value)) {
-                return componentExists(value) ? 'A component or container with this name already exists' : true;
+                return componentExists(value) ? 'A component or container with this name already exists, please try a different one.' : true;
             }
 
-            return 'The name is required';
+            return 'The name is required, please try a different one.';
         },
     }, {
         type: 'confirm',
@@ -34,15 +39,14 @@ module.exports = {
         name: 'wantSaga',
         default: true,
         message: 'Do you want sagas for asynchronous flows? (e.g. fetching data)',
-    }, {
-        type: 'confirm',
-        name: 'wantMessages',
-        default: true,
-        message: 'Do you want i18n messages (i.e. will this component use text)?',
     }],
     actions: (data) => {
         // Generate index.js and index.test.js
         var componentTemplate; // eslint-disable-line no-var
+        let folder = 'containers';
+        if (data.reusable === 'Reusable Util Component') {
+            folder = 'customUtilContainers';
+        }
 
         switch (data.type) {
             case 'Stateless Function': {
@@ -56,25 +60,15 @@ module.exports = {
 
         const actions = [{
             type: 'add',
-            path: '../../app/containers/{{properCase name}}/index.js',
+            path: `../../app/${folder}/{{properCase name}}/index.js`,
             templateFile: componentTemplate,
             abortOnFail: true,
         }, {
             type: 'add',
-            path: '../../app/containers/{{properCase name}}/tests/index.test.js',
+            path: `../../app/${folder}/{{properCase name}}/tests/index.test.js`,
             templateFile: './container/test.js.hbs',
             abortOnFail: true,
         }];
-
-        // If component wants messages
-        if (data.wantMessages) {
-            actions.push({
-                type: 'add',
-                path: '../../app/containers/{{properCase name}}/messages.js',
-                templateFile: './container/messages.js.hbs',
-                abortOnFail: true,
-            });
-        }
 
         // If they want actions and a reducer, generate actions.js, constants.js,
         // reducer.js and the corresponding tests for actions and the reducer
@@ -82,13 +76,13 @@ module.exports = {
             // Actions
             actions.push({
                 type: 'add',
-                path: '../../app/containers/{{properCase name}}/actions.js',
+                path: `../../app/${folder}/{{properCase name}}/actions.js`,
                 templateFile: './container/actions.js.hbs',
                 abortOnFail: true,
             });
             actions.push({
                 type: 'add',
-                path: '../../app/containers/{{properCase name}}/tests/actions.test.js',
+                path: `../../app/${folder}/{{properCase name}}/tests/actions.test.js`,
                 templateFile: './container/actions.test.js.hbs',
                 abortOnFail: true,
             });
@@ -96,7 +90,7 @@ module.exports = {
             // Constants
             actions.push({
                 type: 'add',
-                path: '../../app/containers/{{properCase name}}/constants.js',
+                path: `../../app/${folder}/{{properCase name}}/constants.js`,
                 templateFile: './container/constants.js.hbs',
                 abortOnFail: true,
             });
@@ -104,13 +98,13 @@ module.exports = {
             // Selectors
             actions.push({
                 type: 'add',
-                path: '../../app/containers/{{properCase name}}/selectors.js',
+                path: `../../app/${folder}/{{properCase name}}/selectors.js`,
                 templateFile: './container/selectors.js.hbs',
                 abortOnFail: true,
             });
             actions.push({
                 type: 'add',
-                path: '../../app/containers/{{properCase name}}/tests/selectors.test.js',
+                path: `../../app/${folder}/{{properCase name}}/tests/selectors.test.js`,
                 templateFile: './container/selectors.test.js.hbs',
                 abortOnFail: true,
             });
@@ -118,13 +112,13 @@ module.exports = {
             // Reducer
             actions.push({
                 type: 'add',
-                path: '../../app/containers/{{properCase name}}/reducer.js',
+                path: `../../app/${folder}/{{properCase name}}/reducer.js`,
                 templateFile: './container/reducer.js.hbs',
                 abortOnFail: true,
             });
             actions.push({
                 type: 'add',
-                path: '../../app/containers/{{properCase name}}/tests/reducer.test.js',
+                path: `../../app/${folder}/{{properCase name}}/tests/reducer.test.js`,
                 templateFile: './container/reducer.test.js.hbs',
                 abortOnFail: true,
             });
@@ -134,13 +128,13 @@ module.exports = {
         if (data.wantSaga) {
             actions.push({
                 type: 'add',
-                path: '../../app/containers/{{properCase name}}/saga.js',
+                path: `../../app/${folder}/{{properCase name}}/saga.js`,
                 templateFile: './container/saga.js.hbs',
                 abortOnFail: true,
             });
             actions.push({
                 type: 'add',
-                path: '../../app/containers/{{properCase name}}/tests/saga.test.js',
+                path: `../../app/${folder}/{{properCase name}}/tests/saga.test.js`,
                 templateFile: './container/saga.test.js.hbs',
                 abortOnFail: true,
             });

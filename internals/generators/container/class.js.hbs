@@ -5,8 +5,8 @@
  */
 
 import React from 'react';
-import { Container, Content, Text } from 'native-base';
 import PropTypes from 'prop-types';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 {{#if wantActionsAndReducer}}
 import { createStructuredSelector } from 'reselect';
@@ -24,26 +24,19 @@ import reducer from './reducer';
 {{#if wantSaga}}
 import saga from './saga';
 {{/if}}
-{{#if wantMessages}}
-import messages from './messages';
-{{/if}}
 
 export class {{ properCase name }} extends {{{ type }}} { // eslint-disable-line react/prefer-stateless-function
     render() {
         return (
-            <Container>
-                <Content>
-                    {{#if wantMessages}}
-                    <Text>{ messages.t('messageKey') }</Text>
-                    {{/if}}
-                </Content>
-            </Container>
+            <View>
+                <Text>Content</Text>
+            </View>
         );
     }
 }
 
 {{ properCase name }}.propTypes = {
-    dispatch: PropTypes.func.isRequired,
+//     dispatch: PropTypes.func.isRequired,
 };
 
 {{#if wantActionsAndReducer}}

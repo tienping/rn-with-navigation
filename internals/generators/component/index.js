@@ -17,26 +17,30 @@ module.exports = {
         default: 'Stateless Function',
         choices: () => ['Stateless Function', 'React.PureComponent', 'React.Component'],
     }, {
+        type: 'list',
+        name: 'reusable',
+        message: 'Is this a reusable component?',
+        default: 'Project Specific',
+        choices: () => ['Project Specific', 'Reusable Util Component'],
+    }, {
         type: 'input',
         name: 'name',
         message: 'What should it be called?',
-        default: 'Button',
         validate: (value) => {
             if ((/.+/).test(value)) {
-                return componentExists(value) ? 'A component or container with this name already exists' : true;
+                return componentExists(value) ? 'A component or container with this name already exists, please try a different one.' : true;
             }
 
-            return 'The name is required';
+            return 'The name is required, please try a different one.';
         },
-    }, {
-        type: 'confirm',
-        name: 'wantMessages',
-        default: true,
-        message: 'Do you want i18n messages (i.e. will this component use text)?',
     }],
     actions: (data) => {
         // Generate index.js and index.test.js
         let componentTemplate;
+        let folder = 'components';
+        if (data.reusable === 'Reusable Util Component') {
+            folder = 'customUtilComponents';
+        }
 
         switch (data.type) {
             case 'Stateless Function': {
@@ -50,25 +54,15 @@ module.exports = {
 
         const actions = [{
             type: 'add',
-            path: '../../app/components/{{properCase name}}/index.js',
+            path: `../../app/${folder}/{{properCase name}}/index.js`,
             templateFile: componentTemplate,
             abortOnFail: true,
         }, {
             type: 'add',
-            path: '../../app/components/{{properCase name}}/tests/index.test.js',
+            path: `../../app/${folder}/{{properCase name}}/tests/index.test.js`,
             templateFile: './component/test.js.hbs',
             abortOnFail: true,
         }];
-
-        // If they want a i18n messages file
-        if (data.wantMessages) {
-            actions.push({
-                type: 'add',
-                path: '../../app/components/{{properCase name}}/messages.js',
-                templateFile: './component/messages.js.hbs',
-                abortOnFail: true,
-            });
-        }
 
         return actions;
     },
