@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import { Provider } from 'react-redux';
 import { Navigation } from 'react-native-navigation';
 import configureStore from './app/configureStore';
-import { registerScreens } from './app/ScreenConfiguration';
+import { registerScreens } from './app/AppScreenConfig';
 
 export const store = configureStore({});
 registerScreens(store, Provider);

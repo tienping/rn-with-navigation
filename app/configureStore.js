@@ -21,7 +21,7 @@ export default function configureStore(initialState = {}, history) {
     // const enhancers = [
     //     applyMiddleware(...middlewares),
     //     devTools({
-    //         name: `Hermo ${Platform.OS}`,
+    //         name: `App ${Platform.OS}`,
     //         hostname: 'localhost',
     //         port: 5678,
     //     }),

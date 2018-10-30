@@ -7,6 +7,6 @@ export const globalScope = {
     isAdmin: false,
     debuggerMode: false,
     api: API_URL,
-    defaultAPI: 'https://api.hermo.my',
+    defaultAPI: 'https://api.service.my',
     isConnected: true,
 };
