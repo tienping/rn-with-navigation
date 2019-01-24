@@ -6,6 +6,7 @@
  */
 
 #import "AppDelegate.h"
+#import "RCCManager.h"
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
